@@ -3,6 +3,7 @@ import random
 import sys
 from pathlib import Path
 
+import h5py
 import hydra
 import numpy as np
 import torch
@@ -98,8 +99,6 @@ def infer_femba_emb_dim(femba_model, h5_path, device):
 
 def make_data_splits(h5_path, val_ratio=0.2, seed=42):
     """Create train/val split"""
-    import h5py
-
     with h5py.File(h5_path, "r") as hf:
         N = hf["data"].shape[0]
 
@@ -171,9 +170,7 @@ def train_frequency_encoder(cfg: DictConfig):
         running_consistency_loss = 0.0
         n_samples = 0
 
-        progress_bar = tqdm(train_loader, desc=f"Epoch {epoch}/{cfg.training.epochs}")
-
-        for xb, _ in progress_bar:
+        for xb, _ in tqdm(train_loader, desc=f"Epoch {epoch}/{cfg.training.epochs}"):
             xb = xb.to(device, non_blocking=True).float()
             B = xb.shape[0]
 
