@@ -1,0 +1,24 @@
+batch_size: 32
+epochs: 10
+learning_rate: 1e-3
+
+loss:
+  recon_weight: 1.0  # Weight for reconstruction loss
+  consistency_weight: 0.5  # Weight for consistency loss
+
+masking:
+  mask_prob: 0.25
+
+optimizer:
+  name: adam
+  betas: [0.9, 0.999]
+  eps: 1e-8
+  weight_decay: 0.0
+
+
+amp:
+  enabled: true
+
+checkpoint:
+  save_every: 1
+  keep_last_n: 5

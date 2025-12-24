@@ -1,0 +1,9 @@
+h5_path: siena_femba.h5
+femba_model_path: checkpoints/FEMBA/TUAB/FEMBA_base.safetensors
+output_dir: .
+
+sfreq: 256
+val_ratio: 0.2
+
+num_workers: 0
+pin_memory: true

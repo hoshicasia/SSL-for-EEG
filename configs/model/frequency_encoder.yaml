@@ -1,0 +1,22 @@
+stft:
+  n_fft: 256
+  n_per_seg: 256
+  n_overlap: 128
+
+
+architecture:
+  freq_hidden: 512
+  proj_dim: 128
+
+femba:
+  seq_length: 1280
+  num_channels: 22
+  num_classes: 2
+  kernel_1: 64
+  kernel_dec: [31, 31]
+  exp: 4
+  patch_size: [2, 16]
+  stride: [2, 16]
+  embed_dim: 35
+  num_blocks: 12
+  classification_type: bc

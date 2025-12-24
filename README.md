@@ -1,8 +1,8 @@
 # SSL for EEG
 
-This project implements a few experiments with self-supervised learning for EEG seizure detection using FEMBA (Foundational Encoder Model with Bidirectional Mamba) on Siena-Scalp-EEG dataset.
+This project implements a few experiments with self-supervised learning for EEG seizure detection using FEMBA (Foundational Encoder Model with Bidirectional Mamba) on Siena-Scalp-EEG dataset as a part of final project for Self-Supervised Learning course in HSE university.
 
-In order to run experiments:
+Code structure is heavily inspired by PyTorch Project Template from Deep Learning in Audio Course.
 
 ## Setup
 

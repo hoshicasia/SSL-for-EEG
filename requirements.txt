@@ -9,3 +9,5 @@ scipy
 scikit-learn
 tqdm
 safetensors
+hydra-core
+omegaconf

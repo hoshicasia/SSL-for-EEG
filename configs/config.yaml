@@ -1,0 +1,16 @@
+defaults:
+  - data: siena
+  - model: frequency_encoder
+  - training: frequency_encoder
+  - _self_
+
+
+device: cuda
+seed: 42
+
+hydra:
+  run:
+    dir: outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  sweep:
+    dir: multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.num}
