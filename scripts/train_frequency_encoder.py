@@ -18,7 +18,7 @@ from models.femba import load_pretrained_femba
 from models.frequency_encoder import FrequencyEncoderMAE
 
 
-def set_seed(seed: int):
+def set_seed(seed):
     """Set random seed for reproducibility"""
     random.seed(seed)
     np.random.seed(seed)
@@ -27,9 +27,7 @@ def set_seed(seed: int):
         torch.cuda.manual_seed_all(seed)
 
 
-def compute_spectrogram(
-    x: torch.Tensor, cfg: DictConfig, device: torch.device, eps: float = 1e-12
-):
+def compute_spectrogram(x, cfg, device, eps=1e-12):
     """Compute spectrogram using STFT"""
     n_fft = cfg.model.stft.n_fft
     win_length = cfg.model.stft.n_per_seg
@@ -56,9 +54,7 @@ def compute_spectrogram(
     return p_log
 
 
-def compute_femba_embeddings(
-    model, batch_x: torch.Tensor, device: torch.device, emb_pool: str = "mean"
-):
+def compute_femba_embeddings(model, batch_x, device, emb_pool="mean"):
     """Extract temporal embeddings from FEMBA"""
     model.eval()
     with torch.no_grad():
@@ -86,7 +82,7 @@ def compute_femba_embeddings(
     return emb
 
 
-def infer_femba_emb_dim(femba_model, h5_path: str, device: torch.device) -> int:
+def infer_femba_emb_dim(femba_model, h5_path, device):
     """Infer FEMBA embedding dimension"""
     femba_model.eval()
     ds = H5WindowsDataset(h5_path, idxs=[0])
@@ -100,7 +96,7 @@ def infer_femba_emb_dim(femba_model, h5_path: str, device: torch.device) -> int:
     return int(dim)
 
 
-def make_data_splits(h5_path: str, val_ratio: float = 0.2, seed: int = 42):
+def make_data_splits(h5_path, val_ratio=0.2, seed=42):
     """Create train/val split"""
     import h5py
 
