@@ -1,0 +1,15 @@
+defaults:
+  - data: siena
+  - model: model
+  - training: baseline_frozen
+  - _self_
+
+device: cuda
+seed: 42
+
+hydra:
+  run:
+    dir: outputs/baseline_pca/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  sweep:
+    dir: multirun/baseline_pca/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.num}

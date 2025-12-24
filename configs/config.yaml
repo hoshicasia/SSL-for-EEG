@@ -1,6 +1,6 @@
 defaults:
   - data: siena
-  - model: frequency_encoder
+  - model: model
   - training: frequency_encoder
   - _self_
 

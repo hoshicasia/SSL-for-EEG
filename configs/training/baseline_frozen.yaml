@@ -1,0 +1,14 @@
+epochs: 30
+batch_size: 32
+learning_rate: 0.001
+
+optimizer:
+  betas: [0.9, 0.999]
+  eps: 1e-8
+  weight_decay: 0.0001
+
+checkpoint:
+  save_every: 5
+
+amp:
+  enabled: false

@@ -3,6 +3,8 @@ stft:
   n_per_seg: 256
   n_overlap: 128
 
+# PCA configuration for Baseline 2
+pca_components: 64
 
 architecture:
   freq_hidden: 512
