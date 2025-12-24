@@ -1,0 +1,11 @@
+huggingface_hub
+mne
+torch==2.5.1
+torchvision==0.20.1
+torchaudio==2.5.1
+numpy
+h5py
+scipy
+scikit-learn
+tqdm
+safetensors
