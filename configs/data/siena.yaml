@@ -1,6 +1,5 @@
-# Data configuration for Siena dataset
-h5_path: "/siena_windows.h5"
-femba_model_path: "femba_base.pt"  # Path to pretrained FEMBA weights
+h5_path: "siena_femba.h5"
+femba_model_path: "checkpoints/FEMBA/TUAB/FEMBA_base.safetensors"
 output_dir: "outputs/checkpoints"
 
 val_ratio: 0.2

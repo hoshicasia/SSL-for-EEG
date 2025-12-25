@@ -3,6 +3,10 @@ import random
 import sys
 from pathlib import Path
 
+project_root = Path(__file__).resolve().parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
 import h5py
 import hydra
 import numpy as np
@@ -31,7 +35,9 @@ from utils.utils import (
 
 def compute_class_weights(h5_path, idxs):
     with h5py.File(h5_path, "r") as hf:
-        labels = hf["labels"][idxs]
+        # Sort indices for HDF5 indexing requirement
+        sorted_idxs = np.sort(idxs)
+        labels = hf["labels"][sorted_idxs]
     unique, counts = np.unique(labels, return_counts=True)
     weights = len(labels) / (len(unique) * counts)
     return torch.tensor(weights, dtype=torch.float32)
