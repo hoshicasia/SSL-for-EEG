@@ -46,7 +46,10 @@ def extract_time(line):
 def offset_sec(t0, t1):
     if t1 < t0:
         t1 += timedelta(days=1)
-    return (t1 - t0).total_seconds()
+    delta = (t1 - t0).total_seconds()
+    if delta < 0:
+        delta += 24 * 3600  # добавлю сутки, если время перескочило на новый день
+    return delta
 
 
 def parse_seizure_list(txt_path):

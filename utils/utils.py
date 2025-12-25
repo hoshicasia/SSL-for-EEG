@@ -61,18 +61,20 @@ def infer_femba_emb_dim(femba_model, h5_path, device):
 
 
 def make_data_splits(h5_path, val_ratio=0.2, seed=42):
-    """Create train/val split"""
+    """Create train/val split by patients"""
     with h5py.File(h5_path, "r") as hf:
-        N = hf["data"].shape[0]
+        subjects = hf["subject"][:]
 
+    unique_subjects = np.unique(subjects)
     rng = np.random.default_rng(seed)
-    all_idxs = np.arange(N)
-    rng.shuffle(all_idxs)
+    rng.shuffle(unique_subjects)
 
-    split = int((1 - val_ratio) * N)
-    train_idxs = all_idxs[:split]
-    val_idxs = all_idxs[split:]
+    n_val_subjects = max(1, int(len(unique_subjects) * val_ratio))
+    val_subjects = set(unique_subjects[:n_val_subjects])
+    train_subjects = set(unique_subjects[n_val_subjects:])
 
+    train_idxs = np.where([subj in train_subjects for subj in subjects])[0]
+    val_idxs = np.where([subj in val_subjects for subj in subjects])[0]
     return train_idxs, val_idxs
 
 
