@@ -35,7 +35,6 @@ from utils.utils import (
 
 def compute_class_weights(h5_path, idxs):
     with h5py.File(h5_path, "r") as hf:
-        # Sort indices for HDF5 indexing requirement
         sorted_idxs = np.sort(idxs)
         labels = hf["labels"][sorted_idxs]
     unique, counts = np.unique(labels, return_counts=True)
